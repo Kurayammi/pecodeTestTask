@@ -16,6 +16,9 @@
 		4057D47B2914300700593851 /* Pecode_TestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4057D47A2914300700593851 /* Pecode_TestTests.swift */; };
 		4057D4852914300700593851 /* Pecode_TestUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4057D4842914300700593851 /* Pecode_TestUITests.swift */; };
 		4057D4872914300700593851 /* Pecode_TestUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4057D4862914300700593851 /* Pecode_TestUITestsLaunchTests.swift */; };
+		4057D498291430D900593851 /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4057D496291430D900593851 /* MainScreenViewController.swift */; };
+		4057D499291430D900593851 /* MainScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4057D497291430D900593851 /* MainScreenViewController.xib */; };
+		4057D49B2914322500593851 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4057D49A2914322500593851 /* NetworkManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +52,9 @@
 		4057D4802914300700593851 /* Pecode TestUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Pecode TestUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4057D4842914300700593851 /* Pecode_TestUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pecode_TestUITests.swift; sourceTree = "<group>"; };
 		4057D4862914300700593851 /* Pecode_TestUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pecode_TestUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		4057D496291430D900593851 /* MainScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenViewController.swift; sourceTree = "<group>"; };
+		4057D497291430D900593851 /* MainScreenViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainScreenViewController.xib; sourceTree = "<group>"; };
+		4057D49A2914322500593851 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +105,8 @@
 		4057D4622914300400593851 /* Pecode Test */ = {
 			isa = PBXGroup;
 			children = (
+				4057D494291430A400593851 /* Managers */,
+				4057D4932914309000593851 /* Screens */,
 				4057D4632914300400593851 /* AppDelegate.swift */,
 				4057D4652914300400593851 /* SceneDelegate.swift */,
 				4057D4672914300400593851 /* ViewController.swift */,
@@ -125,6 +133,31 @@
 				4057D4862914300700593851 /* Pecode_TestUITestsLaunchTests.swift */,
 			);
 			path = "Pecode TestUITests";
+			sourceTree = "<group>";
+		};
+		4057D4932914309000593851 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				4057D495291430AE00593851 /* MainScreen */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		4057D494291430A400593851 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				4057D49A2914322500593851 /* NetworkManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		4057D495291430AE00593851 /* MainScreen */ = {
+			isa = PBXGroup;
+			children = (
+				4057D496291430D900593851 /* MainScreenViewController.swift */,
+				4057D497291430D900593851 /* MainScreenViewController.xib */,
+			);
+			path = MainScreen;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -232,6 +265,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4057D4702914300700593851 /* LaunchScreen.storyboard in Resources */,
+				4057D499291430D900593851 /* MainScreenViewController.xib in Resources */,
 				4057D46D2914300700593851 /* Assets.xcassets in Resources */,
 				4057D46B2914300400593851 /* Main.storyboard in Resources */,
 			);
@@ -259,6 +293,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				4057D4682914300400593851 /* ViewController.swift in Sources */,
+				4057D498291430D900593851 /* MainScreenViewController.swift in Sources */,
+				4057D49B2914322500593851 /* NetworkManager.swift in Sources */,
 				4057D4642914300400593851 /* AppDelegate.swift in Sources */,
 				4057D4662914300400593851 /* SceneDelegate.swift in Sources */,
 			);
