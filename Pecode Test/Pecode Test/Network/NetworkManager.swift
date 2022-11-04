@@ -18,7 +18,7 @@ struct ArticlesResponceModel: Codable {
     let title: String?
     let description: String?
     let url: URL?
-    let urlToImage: URL?
+    let urlToImage: String?
     let publishedAt: String?
     
     struct Source: Codable {

@@ -10,7 +10,10 @@ import Foundation
 final class MainScreenViewModel {
     
     var onUpdate: (() ->Void)?
-    var articles: [ArticlesResponceModel]?
+    private var articles: [ArticlesResponceModel]?
+    var presenterArticles: [ArticlesResponceModel]?
+    var totalArticles: Int?
+    var currentPage = 0
     
     func getArticles() {
         let url = ArticlesAPIEndpoint().url
@@ -21,13 +24,22 @@ final class MainScreenViewModel {
             
             switch result {
             case .success(let news):
-                print( news.totalResults)
-                
                 self.articles = news.articles
+                self.totalArticles = news.articles?.count
+                self.presenterArticles = news.articles
+                print("Done")
+                
+                self.onUpdate?()
+                print("update")
             case .failure:
                 print("failure")
             }
         }
+        
+        
     }
     
+    func showArticles() {
+        
+    }
 }

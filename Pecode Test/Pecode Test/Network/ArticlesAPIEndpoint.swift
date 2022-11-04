@@ -18,7 +18,9 @@ struct ArticlesAPIEndpoint {
     
     var query: [String:String?]? {
         ["q": "Apple",
-         "apiKey": UserConstats().apiKey]
+         "apiKey": UserConstats().apiKey,
+         "pageSize": "5",
+         "page": "1"]
         
     }
     
