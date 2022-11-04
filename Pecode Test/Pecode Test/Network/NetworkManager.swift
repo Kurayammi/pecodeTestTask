@@ -6,13 +6,13 @@
 //
 
 import Foundation
-
-private struct NewsResponseModel: Codable {
+ 
+struct NewsResponseModel: Codable {
     let totalResults: Int?
     let articles: [ArticlesResponceModel]?
 }
 
-private struct ArticlesResponceModel: Codable {
+struct ArticlesResponceModel: Codable {
     let source: Source?
     let author: String?
     let title: String?

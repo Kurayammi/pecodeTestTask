@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		4057D4642914300400593851 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4057D4632914300400593851 /* AppDelegate.swift */; };
 		4057D4662914300400593851 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4057D4652914300400593851 /* SceneDelegate.swift */; };
-		4057D4682914300400593851 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4057D4672914300400593851 /* ViewController.swift */; };
-		4057D46B2914300400593851 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4057D4692914300400593851 /* Main.storyboard */; };
 		4057D46D2914300700593851 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4057D46C2914300700593851 /* Assets.xcassets */; };
 		4057D4702914300700593851 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4057D46E2914300700593851 /* LaunchScreen.storyboard */; };
 		4057D47B2914300700593851 /* Pecode_TestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4057D47A2914300700593851 /* Pecode_TestTests.swift */; };
@@ -19,6 +17,9 @@
 		4057D498291430D900593851 /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4057D496291430D900593851 /* MainScreenViewController.swift */; };
 		4057D499291430D900593851 /* MainScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4057D497291430D900593851 /* MainScreenViewController.xib */; };
 		4057D49B2914322500593851 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4057D49A2914322500593851 /* NetworkManager.swift */; };
+		4057D49D291439E900593851 /* MainScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4057D49C291439E900593851 /* MainScreenViewModel.swift */; };
+		4057D4A2291555CE00593851 /* UserConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4057D4A1291555CE00593851 /* UserConstants.swift */; };
+		4057D4A4291557F900593851 /* ArticlesAPIEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4057D4A3291557F900593851 /* ArticlesAPIEndpoint.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,8 +43,6 @@
 		4057D4602914300400593851 /* Pecode Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pecode Test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4057D4632914300400593851 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4057D4652914300400593851 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		4057D4672914300400593851 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		4057D46A2914300400593851 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4057D46C2914300700593851 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4057D46F2914300700593851 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4057D4712914300700593851 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -55,6 +54,9 @@
 		4057D496291430D900593851 /* MainScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenViewController.swift; sourceTree = "<group>"; };
 		4057D497291430D900593851 /* MainScreenViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainScreenViewController.xib; sourceTree = "<group>"; };
 		4057D49A2914322500593851 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		4057D49C291439E900593851 /* MainScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenViewModel.swift; sourceTree = "<group>"; };
+		4057D4A1291555CE00593851 /* UserConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserConstants.swift; sourceTree = "<group>"; };
+		4057D4A3291557F900593851 /* ArticlesAPIEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesAPIEndpoint.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,14 +107,11 @@
 		4057D4622914300400593851 /* Pecode Test */ = {
 			isa = PBXGroup;
 			children = (
-				4057D494291430A400593851 /* Managers */,
-				4057D4932914309000593851 /* Screens */,
 				4057D4632914300400593851 /* AppDelegate.swift */,
 				4057D4652914300400593851 /* SceneDelegate.swift */,
-				4057D4672914300400593851 /* ViewController.swift */,
-				4057D4692914300400593851 /* Main.storyboard */,
-				4057D46C2914300700593851 /* Assets.xcassets */,
-				4057D46E2914300700593851 /* LaunchScreen.storyboard */,
+				4057D494291430A400593851 /* Network */,
+				4057D4932914309000593851 /* Screens */,
+				4057D4A02915559D00593851 /* Resources */,
 				4057D4712914300700593851 /* Info.plist */,
 			);
 			path = "Pecode Test";
@@ -139,16 +138,19 @@
 			isa = PBXGroup;
 			children = (
 				4057D495291430AE00593851 /* MainScreen */,
+				4057D49F2915554600593851 /* DetailsScreen */,
+				4057D49E2915552200593851 /* SavedArticlesScreen */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
 		};
-		4057D494291430A400593851 /* Managers */ = {
+		4057D494291430A400593851 /* Network */ = {
 			isa = PBXGroup;
 			children = (
 				4057D49A2914322500593851 /* NetworkManager.swift */,
+				4057D4A3291557F900593851 /* ArticlesAPIEndpoint.swift */,
 			);
-			path = Managers;
+			path = Network;
 			sourceTree = "<group>";
 		};
 		4057D495291430AE00593851 /* MainScreen */ = {
@@ -156,8 +158,33 @@
 			children = (
 				4057D496291430D900593851 /* MainScreenViewController.swift */,
 				4057D497291430D900593851 /* MainScreenViewController.xib */,
+				4057D49C291439E900593851 /* MainScreenViewModel.swift */,
 			);
 			path = MainScreen;
+			sourceTree = "<group>";
+		};
+		4057D49E2915552200593851 /* SavedArticlesScreen */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = SavedArticlesScreen;
+			sourceTree = "<group>";
+		};
+		4057D49F2915554600593851 /* DetailsScreen */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = DetailsScreen;
+			sourceTree = "<group>";
+		};
+		4057D4A02915559D00593851 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				4057D46E2914300700593851 /* LaunchScreen.storyboard */,
+				4057D46C2914300700593851 /* Assets.xcassets */,
+				4057D4A1291555CE00593851 /* UserConstants.swift */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -267,7 +294,6 @@
 				4057D4702914300700593851 /* LaunchScreen.storyboard in Resources */,
 				4057D499291430D900593851 /* MainScreenViewController.xib in Resources */,
 				4057D46D2914300700593851 /* Assets.xcassets in Resources */,
-				4057D46B2914300400593851 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,11 +318,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4057D4682914300400593851 /* ViewController.swift in Sources */,
+				4057D4A2291555CE00593851 /* UserConstants.swift in Sources */,
 				4057D498291430D900593851 /* MainScreenViewController.swift in Sources */,
 				4057D49B2914322500593851 /* NetworkManager.swift in Sources */,
 				4057D4642914300400593851 /* AppDelegate.swift in Sources */,
 				4057D4662914300400593851 /* SceneDelegate.swift in Sources */,
+				4057D4A4291557F900593851 /* ArticlesAPIEndpoint.swift in Sources */,
+				4057D49D291439E900593851 /* MainScreenViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -333,14 +361,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		4057D4692914300400593851 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				4057D46A2914300400593851 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		4057D46E2914300700593851 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -481,6 +501,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -488,9 +509,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "kitoInc.Pecode-Test";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -509,6 +533,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -516,9 +541,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "kitoInc.Pecode-Test";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

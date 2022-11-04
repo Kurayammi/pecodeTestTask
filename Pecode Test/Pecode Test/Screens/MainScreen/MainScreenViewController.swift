@@ -11,12 +11,42 @@ import UIKit
 //TODO: Add pagination
 //TODO: Add filter by category, country, sources
 
-final class MainScreenViewController: UIViewController {
+final  class MainScreenViewController: UIViewController {
 
+    @IBOutlet private var articlesTableView: UITableView!
+    
+    private let vm = MainScreenViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        setupUI()
+        setupCallbacks()
+        vm.getArticles()
     }
+    
+    private func setupUI() {
+        setupTableView()
+    }
+    
+    private func setupTableView() {
+        articlesTableView.delegate = self
+        articlesTableView.dataSource = self
+    }
+    
+    private func setupCallbacks() {
+        vm.onUpdate = { [weak self] in
+            self?.articlesTableView.reloadData()
+        }
+    }
+}
 
+extension MainScreenViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        5
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        UITableViewCell()
+    }
 }
