@@ -22,6 +22,10 @@
 		4057D4A4291557F900593851 /* ArticlesAPIEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4057D4A3291557F900593851 /* ArticlesAPIEndpoint.swift */; };
 		4057D4A82915832900593851 /* ArticleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4057D4A62915832900593851 /* ArticleTableViewCell.swift */; };
 		4057D4A92915832900593851 /* ArticleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4057D4A72915832900593851 /* ArticleTableViewCell.xib */; };
+		4057D4AD291696D100593851 /* LoadTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4057D4AB291696D100593851 /* LoadTableViewCell.swift */; };
+		4057D4AE291696D100593851 /* LoadTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4057D4AC291696D100593851 /* LoadTableViewCell.xib */; };
+		4057D4B12916A1E000593851 /* DetailsScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4057D4AF2916A1E000593851 /* DetailsScreenViewController.swift */; };
+		4057D4B22916A1E000593851 /* DetailsScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4057D4B02916A1E000593851 /* DetailsScreenViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +65,10 @@
 		4057D4A3291557F900593851 /* ArticlesAPIEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesAPIEndpoint.swift; sourceTree = "<group>"; };
 		4057D4A62915832900593851 /* ArticleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleTableViewCell.swift; sourceTree = "<group>"; };
 		4057D4A72915832900593851 /* ArticleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArticleTableViewCell.xib; sourceTree = "<group>"; };
+		4057D4AB291696D100593851 /* LoadTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadTableViewCell.swift; sourceTree = "<group>"; };
+		4057D4AC291696D100593851 /* LoadTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadTableViewCell.xib; sourceTree = "<group>"; };
+		4057D4AF2916A1E000593851 /* DetailsScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsScreenViewController.swift; sourceTree = "<group>"; };
+		4057D4B02916A1E000593851 /* DetailsScreenViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailsScreenViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +149,7 @@
 		4057D4932914309000593851 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				4057D4AA2916969500593851 /* LoadTableViewCell */,
 				4057D4A5291582F600593851 /* ArticleTableViewCell */,
 				4057D495291430AE00593851 /* MainScreen */,
 				4057D49F2915554600593851 /* DetailsScreen */,
@@ -178,6 +187,8 @@
 		4057D49F2915554600593851 /* DetailsScreen */ = {
 			isa = PBXGroup;
 			children = (
+				4057D4AF2916A1E000593851 /* DetailsScreenViewController.swift */,
+				4057D4B02916A1E000593851 /* DetailsScreenViewController.xib */,
 			);
 			path = DetailsScreen;
 			sourceTree = "<group>";
@@ -199,6 +210,15 @@
 				4057D4A72915832900593851 /* ArticleTableViewCell.xib */,
 			);
 			path = ArticleTableViewCell;
+			sourceTree = "<group>";
+		};
+		4057D4AA2916969500593851 /* LoadTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				4057D4AB291696D100593851 /* LoadTableViewCell.swift */,
+				4057D4AC291696D100593851 /* LoadTableViewCell.xib */,
+			);
+			path = LoadTableViewCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -306,8 +326,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				4057D4A92915832900593851 /* ArticleTableViewCell.xib in Resources */,
+				4057D4B22916A1E000593851 /* DetailsScreenViewController.xib in Resources */,
 				4057D4702914300700593851 /* LaunchScreen.storyboard in Resources */,
 				4057D499291430D900593851 /* MainScreenViewController.xib in Resources */,
+				4057D4AE291696D100593851 /* LoadTableViewCell.xib in Resources */,
 				4057D46D2914300700593851 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -339,6 +361,8 @@
 				4057D4642914300400593851 /* AppDelegate.swift in Sources */,
 				4057D4A82915832900593851 /* ArticleTableViewCell.swift in Sources */,
 				4057D4662914300400593851 /* SceneDelegate.swift in Sources */,
+				4057D4AD291696D100593851 /* LoadTableViewCell.swift in Sources */,
+				4057D4B12916A1E000593851 /* DetailsScreenViewController.swift in Sources */,
 				4057D4A4291557F900593851 /* ArticlesAPIEndpoint.swift in Sources */,
 				4057D49D291439E900593851 /* MainScreenViewModel.swift in Sources */,
 			);

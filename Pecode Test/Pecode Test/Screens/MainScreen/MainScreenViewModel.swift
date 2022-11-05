@@ -10,13 +10,17 @@ import Foundation
 final class MainScreenViewModel {
     
     var onUpdate: (() ->Void)?
-    private var articles: [ArticlesResponceModel]?
-    var presenterArticles: [ArticlesResponceModel]?
-    var totalArticles: Int?
-    var currentPage = 0
+    var articles = [ArticlesResponceModel]()
+    var totalArticles = 0
+    var currentPage = 1
     
-    func getArticles() {
-        let url = ArticlesAPIEndpoint().url
+    func onNextPageTapped() {
+        
+        if articles.count >= totalArticles { return }
+        
+        currentPage += 1
+        
+        let url = ArticlesAPIEndpoint(page: String(currentPage)).url
         
         let nm = NetworkManager()
         
@@ -24,13 +28,14 @@ final class MainScreenViewModel {
             
             switch result {
             case .success(let news):
-                self.articles = news.articles
-                self.totalArticles = news.articles?.count
-                self.presenterArticles = news.articles
-                print("Done")
+                guard let articles = news.articles else { return }
+                guard let total = news.totalResults else { return }
+                self.articles += articles
+                self.totalArticles = total
                 
+                print(articles)
                 self.onUpdate?()
-                print("update")
+                
             case .failure:
                 print("failure")
             }
@@ -39,7 +44,34 @@ final class MainScreenViewModel {
         
     }
     
-    func showArticles() {
+    func onFavouriteButtonTapped(At index: Int) {
         
+    }
+    
+    func onRefresh() {
+        
+        currentPage = 1
+        
+        let url = ArticlesAPIEndpoint(page: String(currentPage)).url
+        
+        let nm = NetworkManager()
+        
+        nm.sendRequest(with: url, objectType: NewsResponseModel.self) { result in
+            
+            switch result {
+            case .success(let news):
+                guard let articles = news.articles else { return }
+                guard let total = news.totalResults else { return }
+                
+                self.articles = articles
+                self.totalArticles = total
+                
+                print(articles)
+                self.onUpdate?()
+                
+            case .failure:
+                print("failure")
+            }
+        }
     }
 }

@@ -8,7 +8,6 @@
 import UIKit
 
 //TODO: Add search
-//TODO: Add pagination
 //TODO: Add filter by category, country, sources
 
 final  class MainScreenViewController: UIViewController {
@@ -22,11 +21,16 @@ final  class MainScreenViewController: UIViewController {
         
         setupUI()
         setupCallbacks()
-        vm.getArticles()
+        vm.onRefresh()
     }
     
     private func setupUI() {
         setupTableView()
+        
+        self.navigationController?.view.backgroundColor = UIColor.white
+        self.navigationController?.view.tintColor = UIColor.orange
+        self.navigationItem.title = "News"
+        
     }
     
     private func setupTableView() {
@@ -35,6 +39,9 @@ final  class MainScreenViewController: UIViewController {
         
         articlesTableView.register(UINib(nibName: "ArticleTableViewCell", bundle: nil),
                                    forCellReuseIdentifier: "ArticleTableViewCell")
+        
+        articlesTableView.register(UINib(nibName: "LoadTableViewCell", bundle: nil),
+                                   forCellReuseIdentifier: "LoadTableViewCell")
         
         articlesTableView.refreshControl = refresher
     }
@@ -50,51 +57,94 @@ final  class MainScreenViewController: UIViewController {
     
     let refresher: UIRefreshControl = {
         let refreshControll = UIRefreshControl()
-        refreshControll.addTarget(self, action: #selector(refresh(sender: )), for: .valueChanged)
+        refreshControll.addTarget(self,
+                                  action: #selector(refresh(sender: )),
+                                  for: .valueChanged)
         return refreshControll
     }()
     
     @objc private func refresh(sender: UIRefreshControl) {
-        vm.getArticles()
+        vm.onRefresh()
     }
 }
 
 extension MainScreenViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        vm.totalArticles ?? 0
+        vm.articles.count + 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "ArticleTableViewCell") as? ArticleTableViewCell {
+        if indexPath.row < vm.articles.count {
             
-            guard let articles = vm.presenterArticles else { return UITableViewCell() }
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "ArticleTableViewCell") as? ArticleTableViewCell  else { return UITableViewCell() }
+            
+            let articles = vm.articles
+            
+            
             cell.setup(title: articles[indexPath.row].title,
                        description: articles[indexPath.row].description,
                        source: articles[indexPath.row].source?.name,
                        author: articles[indexPath.row].author,
-                       iconURL: articles[indexPath.row].urlToImage)
+                       iconURL: articles[indexPath.row].urlToImage,
+                       isSaved: false) { [weak self] cell in
+                guard let indexPath = tableView.indexPath(for: cell) else { return }
+                print("cell tapped at \(indexPath.row)")
+            }
             
             return cell
+            
+        }
+        
+        if indexPath.row == vm.articles.count {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "LoadTableViewCell") as? LoadTableViewCell else { return UITableViewCell() }
+            
+            return cell
+        }
+        
+        return UITableViewCell()
+    }
+    
+    @objc func didTapCellButton(sender: UIButton) {
+        print("Button tapped")
+    }
+    
+    func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+        print("button")
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        
+        if indexPath.row == vm.articles.count {
+            print("last tapped ")
+            vm.onNextPageTapped()
+            
         } else {
-            return UITableViewCell()
+            
+            guard let urlPath = vm.articles[indexPath.row].url else { return }
+            
+            let vc = DetailsScreenViewController()
+            
+            vc.urlPath = urlPath
+            //vc.start(urlPath: urlPath)
+            
+            self.present(vc, animated: true)
         }
     }
     
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let action = UIContextualAction(style: .normal,
+                                        title: "Mark as favourite") {
+            
+            [weak self] (action, view, completionHandler) in
+            self?.vm.onFavouriteButtonTapped(At: indexPath.row)
+            completionHandler(true)
+        }
+        action.backgroundColor = .blue
         
-        let footerView = UIView()
-        footerView.backgroundColor = .blue
-        footerView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height:
-                                    100)
-        let button = UIButton()
-        button.frame = CGRect(x: 20, y: 10, width: 300, height: 50)
-        button.setTitle("CustomButton", for: .normal)
-        //button.titleColor(for: .normal) = .cyan
-        button.backgroundColor = .red
-        footerView.addSubview(button)
-        return footerView
+        return UISwipeActionsConfiguration(actions: [action])
     }
 }
 

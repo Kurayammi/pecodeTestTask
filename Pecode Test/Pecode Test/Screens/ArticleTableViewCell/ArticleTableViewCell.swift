@@ -14,31 +14,41 @@ class ArticleTableViewCell: UITableViewCell {
     @IBOutlet var sourceLabel: UILabel!
     @IBOutlet var authorLabel: UILabel!
     
-    @IBOutlet var iconView: UIImageView!
+    @IBOutlet var saveButton: UIButton!
+    
+    var buttonHandler: ((ArticleTableViewCell) -> Void)?
     
     func setup(title: String?,
                description: String?,
                source: String?,
                author: String?,
-               iconURL: String?) {
+               iconURL: String?,
+               isSaved: Bool,
+               buttonHandler: ((ArticleTableViewCell) -> Void)? ) {
         
         titleLabel.text = title
         descriptionLabel.text = description
         sourceLabel.text = source
         authorLabel.text = author
         
-        iconView.loadImageBy(URLAdress: iconURL)
+        //iconView.loadImageBy(URLAdress: iconURL)
+        
+        self.buttonHandler = buttonHandler
+        
+        if isSaved {
+            saveButton.setTitle("", for: .normal)
+            saveButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
+        } else {
+            saveButton.setTitle("", for: .normal)
+            saveButton.setImage(UIImage(systemName: "star"), for: .normal)
+        }
+        saveButton.addTarget(self, action:  #selector(didTapCellButton(sender:)), for: .touchUpInside)
+       // descriptionLabel.addGestureRecognizer(actionForCellTaped)
+        
     }
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    @objc func didTapCellButton(sender: UIButton) {
+        
+        buttonHandler?(self)
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-    
 }
