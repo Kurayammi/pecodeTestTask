@@ -14,6 +14,13 @@ final  class MainScreenViewController: UIViewController {
     
     @IBOutlet private var articlesTableView: UITableView!
     
+    @IBOutlet private var searchTextField: UITextField!
+    
+    @IBAction func searchButtonAction(_ sender: Any) {
+        guard let text = searchTextField.text else { return }
+        vm.onSearchButtonTapped(searchText: text)
+    }
+    
     private let vm = MainScreenViewModel()
     
     override func viewDidLoad() {
@@ -26,6 +33,7 @@ final  class MainScreenViewController: UIViewController {
     
     private func setupUI() {
         setupTableView()
+        setupSearchTextField()
         
         self.navigationController?.view.backgroundColor = UIColor.white
         self.navigationController?.view.tintColor = UIColor.orange
@@ -45,6 +53,13 @@ final  class MainScreenViewController: UIViewController {
         
         articlesTableView.refreshControl = refresher
     }
+    
+    
+    private func setupSearchTextField() {
+        searchTextField.delegate = self
+        searchTextField.placeholder = "Enter to search"
+    }
+    
     
     private func setupCallbacks() {
         vm.onUpdate = { [weak self] in
@@ -82,12 +97,14 @@ extension MainScreenViewController: UITableViewDelegate, UITableViewDataSource {
             
             let articles = vm.articles
             
+            let imageForCell = vm.loadImageByIndex(index: indexPath.row)
             
             cell.setup(title: articles[indexPath.row].title,
                        description: articles[indexPath.row].description,
                        source: articles[indexPath.row].source?.name,
                        author: articles[indexPath.row].author,
-                       iconURL: articles[indexPath.row].urlToImage,
+                       icon: imageForCell,
+                       publishedAt: articles[indexPath.row].publishedAt,
                        isSaved: false) { [weak self] cell in
                 guard let indexPath = tableView.indexPath(for: cell) else { return }
                 print("cell tapped at \(indexPath.row)")
@@ -105,15 +122,7 @@ extension MainScreenViewController: UITableViewDelegate, UITableViewDataSource {
         
         return UITableViewCell()
     }
-    
-    @objc func didTapCellButton(sender: UIButton) {
-        print("Button tapped")
-    }
-    
-    func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
-        print("button")
-    }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         
@@ -133,18 +142,12 @@ extension MainScreenViewController: UITableViewDelegate, UITableViewDataSource {
             self.present(vc, animated: true)
         }
     }
-    
-    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let action = UIContextualAction(style: .normal,
-                                        title: "Mark as favourite") {
-            
-            [weak self] (action, view, completionHandler) in
-            self?.vm.onFavouriteButtonTapped(At: indexPath.row)
-            completionHandler(true)
-        }
-        action.backgroundColor = .blue
-        
-        return UISwipeActionsConfiguration(actions: [action])
+}
+
+extension MainScreenViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }
 

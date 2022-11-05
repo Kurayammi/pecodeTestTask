@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainScreenViewController" customModule="Pecode_Test" customModuleProvider="target">
             <connections>
                 <outlet property="articlesTableView" destination="MLJ-sx-7au" id="8nh-8b-qMp"/>
+                <outlet property="searchTextField" destination="v2t-02-4PC" id="iY6-ob-vac"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -20,23 +21,61 @@
             <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="MLJ-sx-7au" userLabel="ArticlesTableView">
-                    <rect key="frame" x="0.0" y="47" width="390" height="763"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" contentInsetAdjustmentBehavior="scrollableAxes" bouncesZoom="NO" keyboardDismissMode="onDrag" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="MLJ-sx-7au" userLabel="ArticlesTableView">
+                    <rect key="frame" x="0.0" y="97" width="390" height="747"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <viewLayoutGuide key="contentLayoutGuide" id="IkB-8X-dR6"/>
+                    <viewLayoutGuide key="frameLayoutGuide" id="3Lf-xq-jU2"/>
                 </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x7I-7M-r50" userLabel="SearchView">
+                    <rect key="frame" x="0.0" y="47" width="390" height="50"/>
+                    <subviews>
+                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="v2t-02-4PC" userLabel="SearchTextField">
+                            <rect key="frame" x="0.0" y="0.0" width="340" height="50"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jgL-pa-3qd" userLabel="SearchButton">
+                            <rect key="frame" x="340" y="0.0" width="50" height="50"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="50" id="joh-rP-niz"/>
+                            </constraints>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="plain" image="magnifyingglass" catalog="system"/>
+                            <connections>
+                                <action selector="searchButtonAction:" destination="-1" eventType="touchUpInside" id="djC-rY-N0V"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstItem="jgL-pa-3qd" firstAttribute="leading" secondItem="v2t-02-4PC" secondAttribute="trailing" id="DDN-wU-QEI"/>
+                        <constraint firstItem="jgL-pa-3qd" firstAttribute="top" secondItem="x7I-7M-r50" secondAttribute="top" id="FGv-Qf-iNl"/>
+                        <constraint firstAttribute="bottom" secondItem="jgL-pa-3qd" secondAttribute="bottom" id="PxB-XC-IwZ"/>
+                        <constraint firstItem="v2t-02-4PC" firstAttribute="top" secondItem="x7I-7M-r50" secondAttribute="top" id="ZV0-PA-8dV"/>
+                        <constraint firstAttribute="height" constant="50" id="b8d-uc-HqQ"/>
+                        <constraint firstAttribute="trailing" secondItem="jgL-pa-3qd" secondAttribute="trailing" id="guA-9K-t1G"/>
+                        <constraint firstAttribute="bottom" secondItem="v2t-02-4PC" secondAttribute="bottom" id="q2e-C5-sHD"/>
+                        <constraint firstItem="v2t-02-4PC" firstAttribute="leading" secondItem="x7I-7M-r50" secondAttribute="leading" id="sHf-zb-0cs"/>
+                    </constraints>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemRedColor"/>
             <constraints>
                 <constraint firstItem="MLJ-sx-7au" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="2BQ-Xl-9SD"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="MLJ-sx-7au" secondAttribute="bottom" id="4vM-4b-X6k"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="x7I-7M-r50" secondAttribute="trailing" id="Iap-ok-ao0"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="MLJ-sx-7au" secondAttribute="trailing" id="Mob-PT-bAa"/>
-                <constraint firstItem="MLJ-sx-7au" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="tac-Zc-r8w"/>
+                <constraint firstAttribute="bottom" secondItem="MLJ-sx-7au" secondAttribute="bottom" id="PPR-xQ-Epg"/>
+                <constraint firstItem="x7I-7M-r50" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="YpB-kW-McP"/>
+                <constraint firstItem="x7I-7M-r50" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="ZA6-C6-lu3"/>
+                <constraint firstItem="MLJ-sx-7au" firstAttribute="top" secondItem="x7I-7M-r50" secondAttribute="bottom" id="bAG-6y-7mm"/>
             </constraints>
-            <point key="canvasLocation" x="129" y="21"/>
+            <point key="canvasLocation" x="127.69230769230769" y="20.616113744075829"/>
         </view>
     </objects>
     <resources>
+        <image name="magnifyingglass" catalog="system" width="128" height="117"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

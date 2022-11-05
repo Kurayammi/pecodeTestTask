@@ -9,10 +9,12 @@ import UIKit
 
 class ArticleTableViewCell: UITableViewCell {
     
-    @IBOutlet var titleLabel: UILabel!
-    @IBOutlet var descriptionLabel: UILabel!
-    @IBOutlet var sourceLabel: UILabel!
-    @IBOutlet var authorLabel: UILabel!
+    @IBOutlet private var titleLabel: UILabel!
+    @IBOutlet private var descriptionLabel: UILabel!
+    @IBOutlet private var sourceLabel: UILabel!
+    @IBOutlet private var authorLabel: UILabel!
+    @IBOutlet private var timeLabel: UILabel!
+    @IBOutlet private var iconView: UIImageView!
     
     @IBOutlet var saveButton: UIButton!
     
@@ -22,7 +24,8 @@ class ArticleTableViewCell: UITableViewCell {
                description: String?,
                source: String?,
                author: String?,
-               iconURL: String?,
+               icon: UIImage?,
+               publishedAt: String?,
                isSaved: Bool,
                buttonHandler: ((ArticleTableViewCell) -> Void)? ) {
         
@@ -30,8 +33,8 @@ class ArticleTableViewCell: UITableViewCell {
         descriptionLabel.text = description
         sourceLabel.text = source
         authorLabel.text = author
-        
-        //iconView.loadImageBy(URLAdress: iconURL)
+        timeLabel.text = publishedAt
+        iconView.image = icon
         
         self.buttonHandler = buttonHandler
         
@@ -42,8 +45,9 @@ class ArticleTableViewCell: UITableViewCell {
             saveButton.setTitle("", for: .normal)
             saveButton.setImage(UIImage(systemName: "star"), for: .normal)
         }
+        
         saveButton.addTarget(self, action:  #selector(didTapCellButton(sender:)), for: .touchUpInside)
-       // descriptionLabel.addGestureRecognizer(actionForCellTaped)
+      
         
     }
     

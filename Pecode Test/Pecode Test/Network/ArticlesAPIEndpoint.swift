@@ -8,19 +8,19 @@
 import Foundation
 
 struct ArticlesAPIEndpoint {
-    var scheme = "https"
-    var host = "newsapi.org"
+    private var scheme = "https"
+    private var host = "newsapi.org"
+    private var apiKey: String?
+    private var httpMethod = "GET"
+    private var path = "/v2/everything"
     
-    var apiKey: String?
-    var httpMethod = "GET"
-    var path = "/v2/everything"
+    private var page: String
+    private var searchFor: String
     
-    var page: String
-    
-    var query: [String:String?]? {
-        ["q": "Apple",
+    private var query: [String:String?]? {
+        ["q": searchFor,
          "apiKey": UserConstats().apiKey,
-         "pageSize": "10",
+         "pageSize": "5",
          "page": page]
         
     }
@@ -37,7 +37,9 @@ struct ArticlesAPIEndpoint {
         return urlComponents.url!
     }
     
-    init(page: String) {
+    init(page: String,
+         searchFor: String) {
         self.page = page
+        self.searchFor = searchFor
     }
 }
