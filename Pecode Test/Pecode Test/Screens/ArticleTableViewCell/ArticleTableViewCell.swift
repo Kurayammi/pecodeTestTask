@@ -52,7 +52,6 @@ class ArticleTableViewCell: UITableViewCell {
     }
     
     @objc func didTapCellButton(sender: UIButton) {
-        
         buttonHandler?(self)
     }
 }

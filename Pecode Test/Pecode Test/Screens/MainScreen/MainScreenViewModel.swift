@@ -6,11 +6,12 @@
 //
 
 import UIKit
+import CoreData
 
 final class MainScreenViewModel {
     
     var onUpdate: (() ->Void)?
-    var articles = [ArticlesResponceModel]()
+    var articles = [ArticlesModel]()
     
     private var totalArticles = 0
     private var currentPage = 1
@@ -35,7 +36,19 @@ final class MainScreenViewModel {
             case .success(let news):
                 guard let articles = news.articles else { return }
                 guard let total = news.totalResults else { return }
-                self.articles += articles
+                
+                for news in articles {
+                    let newArticle = ArticlesModel(source: news.source?.name ?? "",
+                                                  author: news.author ?? "",
+                                                  title: news.title ?? "",
+                                                  description: news.description ?? "",
+                                                  url: news.url ?? "",
+                                                  urlToImage: news.urlToImage ?? "",
+                                                  publishedAt: news.publishedAt ?? "")
+                    
+                    self.articles.append(newArticle)
+                }
+                
                 self.totalArticles = total
                 
                 print(articles)
@@ -50,7 +63,20 @@ final class MainScreenViewModel {
     }
     
     func onFavouriteButtonTapped(At index: Int) {
+        let dbManager = ArticlesDatabaseManager()
+        var article = articles[index]
         
+        if articles[index].isSaved {
+            
+            articles[index].isSaved = false
+            dbManager.deleteEntityFromCoreData(title: article.title)
+        } else {
+            
+            articles[index].isSaved = true
+            dbManager.saveArticleToCoreData(articleToSave: article)
+        }
+        
+        onUpdate?()
     }
     
     func onSearchButtonTapped(searchText: String) {
@@ -74,7 +100,20 @@ final class MainScreenViewModel {
                 guard let articles = news.articles else { return }
                 guard let total = news.totalResults else { return }
                 
-                self.articles = articles
+                self.articles = []
+                
+                for news in articles {
+                    let newArticle = ArticlesModel(source: news.source?.name ?? "",
+                                                  author: news.author ?? "",
+                                                  title: news.title ?? "",
+                                                  description: news.description ?? "",
+                                                  url: news.url ?? "",
+                                                  urlToImage: news.urlToImage ?? "",
+                                                  publishedAt: news.publishedAt ?? "")
+                    
+                    self.articles.append(newArticle)
+                }
+                
                 self.totalArticles = total
                 self.imageCash.removeAllObjects()
                 
@@ -97,7 +136,7 @@ final class MainScreenViewModel {
             
             // load image by url and save in cache
             
-            guard let adress = articles[index].urlToImage else { return nil }
+            let adress = articles[index].urlToImage
             guard let url = URL(string: adress ) else {return nil }
             
             guard let data = try? Data(contentsOf: url) else { return nil }

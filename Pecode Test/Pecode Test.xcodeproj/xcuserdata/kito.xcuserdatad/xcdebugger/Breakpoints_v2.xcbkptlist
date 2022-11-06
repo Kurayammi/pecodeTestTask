@@ -23,49 +23,49 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "D39DB9CB-BF03-4586-9F5D-62FC280A0652"
+            uuid = "20752193-B96B-4710-9B6D-65B9BD9B3B5E"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Pecode Test/Screens/MainScreen/MainScreenViewController.swift"
+            filePath = "Pecode Test/Screens/MainScreen/MainScreenViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "20"
-            endingLineNumber = "20"
-            landmarkName = "searchButtonAction(_:)"
+            startingLineNumber = "69"
+            endingLineNumber = "69"
+            landmarkName = "onFavouriteButtonTapped(At:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "D39DB9CB-BF03-4586-9F5D-62FC280A0652 - 6a8d2c242d3536"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Pecode_Test.MainScreenViewController.searchButtonAction(Any) -&gt; ()"
-                  moduleName = "Pecode Test"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Volumes/Macintosh%20SSD%20-%20Data/projects/pecodeTestTask/Pecode%20Test/Pecode%20Test/Screens/MainScreen/MainScreenViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "20"
-                  endingLineNumber = "20"
-                  offsetFromSymbolStart = "88">
-               </Location>
-               <Location
-                  uuid = "D39DB9CB-BF03-4586-9F5D-62FC280A0652 - 6a8d2c242d3536"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Pecode_Test.MainScreenViewController.searchButtonAction(Any) -&gt; ()"
-                  moduleName = "Pecode Test"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Volumes/Macintosh%20SSD%20-%20Data/projects/pecodeTestTask/Pecode%20Test/Pecode%20Test/Screens/MainScreen/MainScreenViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "20"
-                  endingLineNumber = "20"
-                  offsetFromSymbolStart = "324">
-               </Location>
-            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1CAE7312-733E-4E3C-8B34-CCDC4E07ED57"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Pecode Test/Screens/MainScreen/MainScreenViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
+            landmarkName = "onFavouriteButtonTapped(At:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0BE34C72-675E-4FAA-89C0-E3EBEF85981E"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Pecode Test/Screens/MainScreen/MainScreenViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "79"
+            endingLineNumber = "79"
+            landmarkName = "onFavouriteButtonTapped(At:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

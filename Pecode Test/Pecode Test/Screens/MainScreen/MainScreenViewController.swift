@@ -26,6 +26,7 @@ final  class MainScreenViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        ArticlesDatabaseManager().deleteAllFromCoreData()
         setupUI()
         setupCallbacks()
         vm.onRefresh()
@@ -101,12 +102,16 @@ extension MainScreenViewController: UITableViewDelegate, UITableViewDataSource {
             
             cell.setup(title: articles[indexPath.row].title,
                        description: articles[indexPath.row].description,
-                       source: articles[indexPath.row].source?.name,
+                       source: articles[indexPath.row].source,
                        author: articles[indexPath.row].author,
                        icon: imageForCell,
                        publishedAt: articles[indexPath.row].publishedAt,
-                       isSaved: false) { [weak self] cell in
+                       isSaved: articles[indexPath.row].isSaved) { [weak self] cell in
+                
                 guard let indexPath = tableView.indexPath(for: cell) else { return }
+                
+                self?.vm.onFavouriteButtonTapped(At: indexPath.row)
+                
                 print("cell tapped at \(indexPath.row)")
             }
             
@@ -114,7 +119,7 @@ extension MainScreenViewController: UITableViewDelegate, UITableViewDataSource {
             
         }
         
-        if indexPath.row == vm.articles.count {
+        if indexPath.row == vm.articles.count && vm.articles.count > 0 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "LoadTableViewCell") as? LoadTableViewCell else { return UITableViewCell() }
             
             return cell
@@ -126,13 +131,15 @@ extension MainScreenViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         
+        if vm.articles.count == 0 { return }
+        
         if indexPath.row == vm.articles.count {
             print("last tapped ")
             vm.onNextPageTapped()
             
         } else {
             
-            guard let urlPath = vm.articles[indexPath.row].url else { return }
+            let urlPath = vm.articles[indexPath.row].url 
             
             let vc = DetailsScreenViewController()
             
@@ -148,21 +155,5 @@ extension MainScreenViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
-    }
-}
-
-extension UIImageView {
-    func loadImageBy(URLAdress adress: String?) {
-        guard let url = URL(string: adress ?? "") else {return}
-        
-        DispatchQueue.main.async {
-            [weak self] in
-            
-            if let imageData = try? Data(contentsOf: url) {
-                if let loadedImage = UIImage(data: imageData) {
-                    self?.image = loadedImage
-                }
-            }
-        }
     }
 }
