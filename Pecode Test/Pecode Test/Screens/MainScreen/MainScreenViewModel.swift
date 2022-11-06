@@ -8,6 +8,11 @@
 import UIKit
 import CoreData
 
+enum LoadingState {
+    case refresh
+    case loadNextPage
+}
+
 final class MainScreenViewModel {
     
     var onUpdate: (() ->Void)?
@@ -19,23 +24,40 @@ final class MainScreenViewModel {
     
     private let imageCash = NSCache<NSString, UIImage>()
     
-    func onNextPageTapped() {
+    func loadArticles(state: LoadingState) {
         
-        if articles.count >= totalArticles { return }
-        
-        currentPage += 1
+        switch state {
+        case .refresh:
+            currentPage = 1
+            
+        case .loadNextPage:
+            
+            if articles.count >= totalArticles { return }
+            currentPage += 1
+        }
         
         let url = ArticlesAPIEndpoint(page: String(currentPage),
                                       searchFor: searchFor).url
         
         let nm = NetworkManager()
         
-        nm.sendRequest(with: url, objectType: NewsResponseModel.self) { result in
+        nm.sendRequest(with: url, objectType: NewsResponseModel.self) {  result in
             
             switch result {
             case .success(let news):
-                guard let articles = news.articles else { return }
-                guard let total = news.totalResults else { return }
+                guard let articles = news.articles else {
+                    self.onUpdate?()
+                    return }
+                guard let total = news.totalResults else {
+                    self.onUpdate?()
+                    return }
+                
+                switch state {
+                case .refresh:
+                    self.articles = []
+                    self.imageCash.removeAllObjects()
+                case .loadNextPage: break
+                }
                 
                 for news in articles {
                     let image = self.loadImageByUrlPath(path: news.urlToImage)
@@ -53,13 +75,12 @@ final class MainScreenViewModel {
                 self.totalArticles = total
                 
                 print(articles)
-                self.onUpdate?()
+                self.syncCoreDataWithCurrentArticles()
                 
             case .failure:
                 print("failure")
             }
         }
-        
         
     }
     
@@ -81,70 +102,34 @@ final class MainScreenViewModel {
     
     func onSearchButtonTapped(searchText: String) {
         searchFor = searchText
-        onRefresh()
+        loadArticles(state: .refresh)
     }
-    
-    func onRefresh() {
-        
-        currentPage = 1
-        
-        let url = ArticlesAPIEndpoint(page: String(currentPage),
-                                      searchFor: searchFor).url
-        
-        let nm = NetworkManager()
-        
-        nm.sendRequest(with: url, objectType: NewsResponseModel.self) { result in
-            
-            switch result {
-            case .success(let news):
-                guard let articles = news.articles else { return }
-                guard let total = news.totalResults else { return }
-                
-                self.articles = []
-                self.imageCash.removeAllObjects()
-                
-                print(articles)
-                for news in articles {
-                    let image = self.loadImageByUrlPath(path: news.urlToImage)
-                    let newArticle = ArticlesModel(source: news.source?.name ?? "",
-                                                   author: news.author ?? "",
-                                                   title: news.title ?? "",
-                                                   description: news.description ?? "",
-                                                   url: news.url ?? "",
-                                                   image: image,
-                                                   publishedAt: news.publishedAt ?? "")
-                    self.articles.append(newArticle)
-                }
-                
-                self.totalArticles = total
-                self.onUpdate?()
-                
-            case .failure:
-                print("failure")
-            }
-        }
-    }
-    
+      
     func syncCoreDataWithCurrentArticles() {
-        let dbManager = ArticlesDatabaseManager()
         
-        if let savedArticles = dbManager.fetchArticlesFromCoreData() {
+        DispatchQueue.main.async {
+            let dbManager = ArticlesDatabaseManager()
             
-            for index in (0 ..< articles.count) {
-                articles[index].isSaved = false
-            }
-            
-            for saved in savedArticles {
-                for index in (0 ..< articles.count) {
-                    
-                    if saved.title == articles[index].title {
-                        articles[index].isSaved = true
-                    } 
+            if let savedArticles = dbManager.fetchArticlesFromCoreData() {
+                
+                for index in (0 ..< self.articles.count) {
+                    self.articles[index].isSaved = false
                 }
+                
+                for saved in savedArticles {
+                    for index in (0 ..< self.articles.count) {
+                        
+                        if saved.title == self.articles[index].title {
+                            self.articles[index].isSaved = true
+                        }
+                    }
+                }
+                
+               
             }
-            
-            onUpdate?()
         }
+        
+        onUpdate?()
     }
     
     func loadImageByUrlPath(path: String?) -> UIImage? {

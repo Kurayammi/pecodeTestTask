@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainScreenViewController" customModule="Pecode_Test" customModuleProvider="target">
             <connections>
                 <outlet property="articlesTableView" destination="MLJ-sx-7au" id="8nh-8b-qMp"/>
+                <outlet property="searchButton" destination="jgL-pa-3qd" id="qau-YZ-dxA"/>
                 <outlet property="searchTextField" destination="v2t-02-4PC" id="iY6-ob-vac"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -30,15 +31,21 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x7I-7M-r50" userLabel="SearchView">
                     <rect key="frame" x="0.0" y="47" width="390" height="50"/>
                     <subviews>
-                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="v2t-02-4PC" userLabel="SearchTextField">
-                            <rect key="frame" x="0.0" y="0.0" width="340" height="50"/>
+                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="v2t-02-4PC" userLabel="SearchTextField">
+                            <rect key="frame" x="45" y="5" width="300" height="40"/>
+                            <color key="backgroundColor" systemColor="secondarySystemFillColor"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="LhM-46-NhG"/>
+                                <constraint firstAttribute="width" constant="300" id="cxt-mE-4Ww"/>
+                            </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jgL-pa-3qd" userLabel="SearchButton">
-                            <rect key="frame" x="340" y="0.0" width="50" height="50"/>
+                            <rect key="frame" x="345" y="5" width="40" height="40"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="50" id="joh-rP-niz"/>
+                                <constraint firstAttribute="height" constant="40" id="eOs-Fw-Qrm"/>
+                                <constraint firstAttribute="width" constant="40" id="joh-rP-niz"/>
                             </constraints>
                             <state key="normal" title="Button"/>
                             <buttonConfiguration key="configuration" style="plain" image="magnifyingglass" catalog="system"/>
@@ -49,19 +56,16 @@
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
-                        <constraint firstItem="jgL-pa-3qd" firstAttribute="leading" secondItem="v2t-02-4PC" secondAttribute="trailing" id="DDN-wU-QEI"/>
-                        <constraint firstItem="jgL-pa-3qd" firstAttribute="top" secondItem="x7I-7M-r50" secondAttribute="top" id="FGv-Qf-iNl"/>
-                        <constraint firstAttribute="bottom" secondItem="jgL-pa-3qd" secondAttribute="bottom" id="PxB-XC-IwZ"/>
-                        <constraint firstItem="v2t-02-4PC" firstAttribute="top" secondItem="x7I-7M-r50" secondAttribute="top" id="ZV0-PA-8dV"/>
+                        <constraint firstItem="jgL-pa-3qd" firstAttribute="centerY" secondItem="x7I-7M-r50" secondAttribute="centerY" id="0Wy-06-Ohs"/>
+                        <constraint firstItem="v2t-02-4PC" firstAttribute="centerX" secondItem="x7I-7M-r50" secondAttribute="centerX" id="Ah0-aA-BsG"/>
                         <constraint firstAttribute="height" constant="50" id="b8d-uc-HqQ"/>
-                        <constraint firstAttribute="trailing" secondItem="jgL-pa-3qd" secondAttribute="trailing" id="guA-9K-t1G"/>
-                        <constraint firstAttribute="bottom" secondItem="v2t-02-4PC" secondAttribute="bottom" id="q2e-C5-sHD"/>
-                        <constraint firstItem="v2t-02-4PC" firstAttribute="leading" secondItem="x7I-7M-r50" secondAttribute="leading" id="sHf-zb-0cs"/>
+                        <constraint firstAttribute="trailing" secondItem="jgL-pa-3qd" secondAttribute="trailing" constant="5" id="guA-9K-t1G"/>
+                        <constraint firstItem="v2t-02-4PC" firstAttribute="centerY" secondItem="x7I-7M-r50" secondAttribute="centerY" id="wSf-mE-IAv"/>
                     </constraints>
                 </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <color key="backgroundColor" systemColor="systemRedColor"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="MLJ-sx-7au" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="2BQ-Xl-9SD"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="x7I-7M-r50" secondAttribute="trailing" id="Iap-ok-ao0"/>
@@ -76,11 +80,11 @@
     </objects>
     <resources>
         <image name="magnifyingglass" catalog="system" width="128" height="117"/>
+        <systemColor name="secondarySystemFillColor">
+            <color red="0.47058823529411764" green="0.47058823529411764" blue="0.50196078431372548" alpha="0.16" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

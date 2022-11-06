@@ -1,5 +1,5 @@
 //
-//  MainScreenModel.swift
+//  ArticlesModel.swift
 //  Pecode Test
 //
 //  Created by Kito on 11/6/22.

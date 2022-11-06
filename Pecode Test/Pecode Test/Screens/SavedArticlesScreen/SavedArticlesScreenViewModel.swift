@@ -28,9 +28,7 @@ final class SavedArticlesScreenViewModel {
         }
         
         let searchedArticles = articles.compactMap {
-            if $0.title.contains(text) {
-                return $0
-            }
+            if $0.title.contains(text) { return $0 }
             
             return nil
         }
@@ -48,7 +46,6 @@ final class SavedArticlesScreenViewModel {
     
     func onFavouriteButtonTapped(At index: Int) {
         let dbManager = ArticlesDatabaseManager()
-        
         
         dbManager.deleteEntityFromCoreData(title: articles[index].title)
         articles.remove(at: index)

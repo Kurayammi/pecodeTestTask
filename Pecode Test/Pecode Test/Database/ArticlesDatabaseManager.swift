@@ -21,7 +21,6 @@ final class ArticlesDatabaseManager {
         
         print("start save to coreData")
         
-        
         guard let managedContext = managedContext else { return}
         guard let entity = NSEntityDescription.entity(forEntityName: "Article",
                                                       in: managedContext) else { return }
@@ -84,31 +83,28 @@ final class ArticlesDatabaseManager {
         
     }
     
-    
-    func deleteAllFromCoreData(action: (() ->Void)? = nil) {
+    func deleteAllFromCoreData() {
         
         guard let managedContext = managedContext else { return}
         
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Article")
-        
         let deleteAllRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
         
         do {
             try managedContext.execute(deleteAllRequest)
-            action?()
+            print("CoreData cleared")
         } catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")
         }
     }
     
-    
-    func deleteEntityFromCoreData(title: String, action: (() ->Void)? = nil) {
+    func deleteEntityFromCoreData(title: String) {
+        
         print("Start delete from CoreData")
         
         guard let managedContext = managedContext else { return}
         
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Article")
-        
         let pred = NSPredicate(format: "title=%@", title)
         
         fetchRequest.predicate = pred
@@ -121,7 +117,6 @@ final class ArticlesDatabaseManager {
             }
             
             try managedContext.save()
-            action?()
             print("CoreData saved")
             
         } catch let error as NSError {

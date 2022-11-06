@@ -8,6 +8,7 @@
 import Foundation
 
 struct ArticlesAPIEndpoint {
+    
     private var scheme = "https"
     private var host = "newsapi.org"
     private var apiKey: String?

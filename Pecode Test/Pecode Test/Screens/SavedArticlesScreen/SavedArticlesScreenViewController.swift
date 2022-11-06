@@ -11,16 +11,18 @@ final class SavedArticlesScreenViewController: UIViewController {
     
     @IBOutlet private var articlesTableView: UITableView!
     @IBOutlet private var searchTextField: UITextField!
-    
-    private let vm = SavedArticlesScreenViewModel()
+    @IBOutlet private var searchButton: UIButton!
+    @IBOutlet private var deleteButton: UIButton!
     
     @IBAction private func searchButtonAction(_ sender: Any) {
         vm.searchByTitle(searchBy: searchTextField.text)
     }
     
-    @IBAction func deleteButtonAction(_ sender: Any) {
+    @IBAction private func deleteButtonAction(_ sender: Any) {
         vm.deleteAllArticles()
     }
+    
+    private let vm = SavedArticlesScreenViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,10 +34,18 @@ final class SavedArticlesScreenViewController: UIViewController {
     private func setupUI() {
         setupTableView()
         setupTextField()
+        setupNavigationBar()
+        deleteButton.isHidden = true
+    }
+    
+    private func setupNavigationBar() {
+        self.navigationItem.title = "Saved News"
     }
     
     private func setupTextField() {
         searchTextField.delegate = self
+        searchTextField.placeholder = "Tap to search"
+        searchButton.setTitle("", for: .normal)
     }
     
     private func setupTableView() {
@@ -44,21 +54,6 @@ final class SavedArticlesScreenViewController: UIViewController {
         
         articlesTableView.register(UINib(nibName: "ArticleTableViewCell", bundle: nil),
                                    forCellReuseIdentifier: "ArticleTableViewCell")
-        
-        
-        articlesTableView.refreshControl = refresher
-    }
-    
-    let refresher: UIRefreshControl = {
-        let refreshControll = UIRefreshControl()
-        refreshControll.addTarget(self,
-                                  action: #selector(refresh(sender: )),
-                                  for: .valueChanged)
-        return refreshControll
-    }()
-    
-    @objc private func refresh(sender: UIRefreshControl) {
-        //vm.onRefresh()
     }
     
     private func setupCallbacks() {
@@ -66,12 +61,14 @@ final class SavedArticlesScreenViewController: UIViewController {
             DispatchQueue.main.async {
                 self?.articlesTableView.reloadData()
                 self?.articlesTableView.refreshControl?.endRefreshing()
+                self?.deleteButton.isHidden = self?.vm.articles.isEmpty ?? true
             }
         }
     }
     
 }
 
+//MARK: UITableViewDelegate
 extension SavedArticlesScreenViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         vm.articles.count
@@ -97,8 +94,6 @@ extension SavedArticlesScreenViewController: UITableViewDelegate, UITableViewDat
                 guard let indexPath = tableView.indexPath(for: cell) else { return }
                 
                 self?.vm.onFavouriteButtonTapped(At: indexPath.row)
-                
-                print("cell tapped at \(indexPath.row)")
             }
             
             return cell
@@ -111,9 +106,8 @@ extension SavedArticlesScreenViewController: UITableViewDelegate, UITableViewDat
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        
         if vm.articles.count == 0 { return }
-        
+    
         let urlPath = vm.articles[indexPath.row].url
         
         let vc = DetailsScreenViewController()
@@ -125,6 +119,7 @@ extension SavedArticlesScreenViewController: UITableViewDelegate, UITableViewDat
     }
 }
 
+//MARK: UITextFieldDelegate
 extension SavedArticlesScreenViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()

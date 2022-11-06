@@ -12,6 +12,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SavedArticlesScreenViewController" customModule="Pecode_Test" customModuleProvider="target">
             <connections>
                 <outlet property="articlesTableView" destination="qZa-1v-VZ5" id="k0e-Lf-qOo"/>
+                <outlet property="deleteButton" destination="Kgw-Ll-vKH" id="XsK-QH-AQO"/>
+                <outlet property="searchButton" destination="Kmr-f7-4QJ" id="B95-iH-fJs"/>
                 <outlet property="searchTextField" destination="6fz-38-aga" id="kxr-ES-kan"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -25,14 +27,19 @@
                     <rect key="frame" x="0.0" y="47" width="390" height="50"/>
                     <subviews>
                         <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6fz-38-aga" userLabel="SearchTextField">
-                            <rect key="frame" x="0.0" y="0.0" width="340" height="50"/>
+                            <rect key="frame" x="45" y="5" width="300" height="40"/>
+                            <color key="backgroundColor" systemColor="secondarySystemFillColor"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="TZP-s5-HE4"/>
+                                <constraint firstAttribute="width" constant="300" id="cSp-Z7-oe3"/>
+                            </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kmr-f7-4QJ" userLabel="SearchButton">
-                            <rect key="frame" x="340" y="0.0" width="50" height="50"/>
+                            <rect key="frame" x="345" y="8" width="40" height="34.333333333333336"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="50" id="BQh-0f-L3p"/>
+                                <constraint firstAttribute="width" constant="40" id="BQh-0f-L3p"/>
                             </constraints>
                             <state key="normal" title="Button"/>
                             <buttonConfiguration key="configuration" style="plain" image="magnifyingglass" catalog="system"/>
@@ -43,15 +50,12 @@
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
-                        <constraint firstItem="Kmr-f7-4QJ" firstAttribute="leading" secondItem="6fz-38-aga" secondAttribute="trailing" id="0V3-21-UUh"/>
-                        <constraint firstAttribute="bottom" secondItem="Kmr-f7-4QJ" secondAttribute="bottom" id="7wr-ok-58y"/>
-                        <constraint firstAttribute="bottom" secondItem="6fz-38-aga" secondAttribute="bottom" id="CTO-wz-pL9"/>
-                        <constraint firstAttribute="trailing" secondItem="Kmr-f7-4QJ" secondAttribute="trailing" id="DxH-iK-MAv"/>
+                        <constraint firstItem="Kmr-f7-4QJ" firstAttribute="centerY" secondItem="cFC-Wc-gyu" secondAttribute="centerY" id="CPU-Y5-JLm"/>
+                        <constraint firstAttribute="trailing" secondItem="Kmr-f7-4QJ" secondAttribute="trailing" constant="5" id="DxH-iK-MAv"/>
+                        <constraint firstItem="6fz-38-aga" firstAttribute="centerX" secondItem="cFC-Wc-gyu" secondAttribute="centerX" id="IdX-js-IMy"/>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="Q3R-nV-oct"/>
-                        <constraint firstItem="Kmr-f7-4QJ" firstAttribute="top" secondItem="cFC-Wc-gyu" secondAttribute="top" id="o8L-PE-a0d"/>
-                        <constraint firstItem="6fz-38-aga" firstAttribute="top" secondItem="cFC-Wc-gyu" secondAttribute="top" id="ry2-bd-YQp"/>
+                        <constraint firstItem="6fz-38-aga" firstAttribute="centerY" secondItem="cFC-Wc-gyu" secondAttribute="centerY" id="dnN-DN-Tm1"/>
                         <constraint firstAttribute="height" constant="50" id="sht-yi-9Zb"/>
-                        <constraint firstItem="6fz-38-aga" firstAttribute="leading" secondItem="cFC-Wc-gyu" secondAttribute="leading" id="yJ5-Og-P2f"/>
                     </constraints>
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="qZa-1v-VZ5">
@@ -94,6 +98,9 @@
     </objects>
     <resources>
         <image name="magnifyingglass" catalog="system" width="128" height="117"/>
+        <systemColor name="secondarySystemFillColor">
+            <color red="0.47058823529411764" green="0.47058823529411764" blue="0.50196078431372548" alpha="0.16" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

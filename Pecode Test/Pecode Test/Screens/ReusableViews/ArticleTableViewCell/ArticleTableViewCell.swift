@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ArticleTableViewCell: UITableViewCell {
+final class ArticleTableViewCell: UITableViewCell {
     
     @IBOutlet private var titleLabel: UILabel!
     @IBOutlet private var descriptionLabel: UILabel!
@@ -15,8 +15,7 @@ class ArticleTableViewCell: UITableViewCell {
     @IBOutlet private var authorLabel: UILabel!
     @IBOutlet private var timeLabel: UILabel!
     @IBOutlet private var iconView: UIImageView!
-    
-    @IBOutlet var saveButton: UIButton!
+    @IBOutlet private var saveButton: UIButton!
     
     var buttonHandler: ((ArticleTableViewCell) -> Void)?
     
@@ -47,11 +46,10 @@ class ArticleTableViewCell: UITableViewCell {
         }
         
         saveButton.addTarget(self, action:  #selector(didTapCellButton(sender:)), for: .touchUpInside)
-      
         
     }
     
-    @objc func didTapCellButton(sender: UIButton) {
+    @objc private func didTapCellButton(sender: UIButton) {
         buttonHandler?(self)
     }
 }
