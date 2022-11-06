@@ -38,13 +38,14 @@ final class MainScreenViewModel {
                 guard let total = news.totalResults else { return }
                 
                 for news in articles {
+                    let image = self.loadImageByUrlPath(path: news.urlToImage)
                     let newArticle = ArticlesModel(source: news.source?.name ?? "",
-                                                  author: news.author ?? "",
-                                                  title: news.title ?? "",
-                                                  description: news.description ?? "",
-                                                  url: news.url ?? "",
-                                                  urlToImage: news.urlToImage ?? "",
-                                                  publishedAt: news.publishedAt ?? "")
+                                                   author: news.author ?? "",
+                                                   title: news.title ?? "",
+                                                   description: news.description ?? "",
+                                                   url: news.url ?? "",
+                                                   image: image,
+                                                   publishedAt: news.publishedAt ?? "")
                     
                     self.articles.append(newArticle)
                 }
@@ -64,16 +65,15 @@ final class MainScreenViewModel {
     
     func onFavouriteButtonTapped(At index: Int) {
         let dbManager = ArticlesDatabaseManager()
-        var article = articles[index]
         
         if articles[index].isSaved {
             
             articles[index].isSaved = false
-            dbManager.deleteEntityFromCoreData(title: article.title)
+            dbManager.deleteEntityFromCoreData(title: articles[index].title)
         } else {
             
             articles[index].isSaved = true
-            dbManager.saveArticleToCoreData(articleToSave: article)
+            dbManager.saveArticleToCoreData(articleToSave: articles[index])
         }
         
         onUpdate?()
@@ -101,23 +101,22 @@ final class MainScreenViewModel {
                 guard let total = news.totalResults else { return }
                 
                 self.articles = []
+                self.imageCash.removeAllObjects()
                 
+                print(articles)
                 for news in articles {
+                    let image = self.loadImageByUrlPath(path: news.urlToImage)
                     let newArticle = ArticlesModel(source: news.source?.name ?? "",
-                                                  author: news.author ?? "",
-                                                  title: news.title ?? "",
-                                                  description: news.description ?? "",
-                                                  url: news.url ?? "",
-                                                  urlToImage: news.urlToImage ?? "",
-                                                  publishedAt: news.publishedAt ?? "")
-                    
+                                                   author: news.author ?? "",
+                                                   title: news.title ?? "",
+                                                   description: news.description ?? "",
+                                                   url: news.url ?? "",
+                                                   image: image,
+                                                   publishedAt: news.publishedAt ?? "")
                     self.articles.append(newArticle)
                 }
                 
                 self.totalArticles = total
-                self.imageCash.removeAllObjects()
-                
-                print(articles)
                 self.onUpdate?()
                 
             case .failure:
@@ -126,24 +125,45 @@ final class MainScreenViewModel {
         }
     }
     
-    func loadImageByIndex(index: Int) -> UIImage? {
-        let indexString = String(index)
+    func syncCoreDataWithCurrentArticles() {
+        let dbManager = ArticlesDatabaseManager()
         
-        if let cashedImage = imageCash.object(forKey: NSString(string: indexString as NSString)) {
+        if let savedArticles = dbManager.fetchArticlesFromCoreData() {
+            
+            for index in (0 ..< articles.count) {
+                articles[index].isSaved = false
+            }
+            
+            for saved in savedArticles {
+                for index in (0 ..< articles.count) {
+                    
+                    if saved.title == articles[index].title {
+                        articles[index].isSaved = true
+                    } 
+                }
+            }
+            
+            onUpdate?()
+        }
+    }
+    
+    func loadImageByUrlPath(path: String?) -> UIImage? {
+        
+        guard let path = path else { return nil }
+        if let cashedImage = imageCash.object(forKey: NSString(string: path as NSString)) {
             return cashedImage
             
         } else {
             
             // load image by url and save in cache
             
-            let adress = articles[index].urlToImage
-            guard let url = URL(string: adress ) else {return nil }
+            guard let url = URL(string: path ) else {return nil }
             
             guard let data = try? Data(contentsOf: url) else { return nil }
             guard let image: UIImage = UIImage(data: data) else { return nil}
             
             DispatchQueue.main.async {
-                self.imageCash.setObject(image, forKey: NSString(string: indexString as NSString))
+                self.imageCash.setObject(image, forKey: NSString(string: path as NSString))
             }
             
             return image

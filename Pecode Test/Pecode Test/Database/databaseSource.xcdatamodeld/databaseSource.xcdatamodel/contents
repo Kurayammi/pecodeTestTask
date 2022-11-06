@@ -4,8 +4,10 @@
         <attribute name="author" optional="YES" attributeType="String"/>
         <attribute name="detailsInfo" optional="YES" attributeType="String"/>
         <attribute name="icon" optional="YES" attributeType="Binary"/>
+        <attribute name="isSaved" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="publishedAt" optional="YES" attributeType="String"/>
         <attribute name="source" optional="YES" attributeType="String"/>
         <attribute name="title" optional="YES" attributeType="String"/>
+        <attribute name="urlPath" optional="YES" attributeType="String"/>
     </entity>
 </model>

@@ -34,29 +34,46 @@ final class ArticlesDatabaseManager {
         article.setValue(articleToSave.publishedAt, forKey: "publishedAt")
         article.setValue(articleToSave.author, forKey: "author")
         article.setValue(articleToSave.source, forKey: "source")
+        article.setValue(articleToSave.url, forKey: "urlPath")
+        article.setValue(articleToSave.isSaved, forKey: "isSaved")
         
-        //let image = loadImageByIndex(index: index)
-        //let jpegImage = image?.jpegData(compressionQuality: 1.0)
-        
-        //article.setValue(jpegImage, forKey: "icon")
+        if let image = articleToSave.image {
+            let jpegImage = image.jpegData(compressionQuality: 1.0)
+            article.setValue(jpegImage, forKey: "icon")
+        }
         
         do {
             try managedContext.save()
-            print("saved to coreData")
+            print("CoreData saved")
             
         } catch let error as NSError {
             print("Could not save. \(error), \(error.userInfo)")
         }
     }
     
-    func fetchArticlesFromCoreData() -> [NSManagedObject]? {
+    func fetchArticlesFromCoreData() -> [ArticlesModel]? {
         
         guard let managedContext = managedContext else { return nil}
         
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Article")
         
         do {
-            let articles = try managedContext.fetch(fetchRequest)
+            var articles =  [ArticlesModel]()
+            
+            let fetchedArticles = try managedContext.fetch(fetchRequest)
+            
+            for fetched in fetchedArticles {
+                
+                let newArticle = ArticlesModel(source: fetched.value(forKey: "source") as! String,
+                                               author: fetched.value(forKey: "author") as! String,
+                                               title: fetched.value(forKey: "title") as! String,
+                                               description: fetched.value(forKey: "detailsInfo") as! String,
+                                               url: fetched.value(forKey: "urlPath") as! String,
+                                               image: UIImage(data: fetched.value(forKey: "icon") as! Data),
+                                               publishedAt: fetched.value(forKey: "publishedAt") as! String,
+                                               isSaved: fetched.value(forKey: "isSaved") as? Bool ?? false)
+                articles.append(newArticle)
+            }
             
             return articles
         } catch let error as NSError {
@@ -68,7 +85,7 @@ final class ArticlesDatabaseManager {
     }
     
     
-    func deleteAllFromCoreData() {
+    func deleteAllFromCoreData(action: (() ->Void)? = nil) {
         
         guard let managedContext = managedContext else { return}
         
@@ -78,13 +95,14 @@ final class ArticlesDatabaseManager {
         
         do {
             try managedContext.execute(deleteAllRequest)
+            action?()
         } catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")
         }
     }
     
     
-    func deleteEntityFromCoreData(title: String) {
+    func deleteEntityFromCoreData(title: String, action: (() ->Void)? = nil) {
         print("Start delete from CoreData")
         
         guard let managedContext = managedContext else { return}
@@ -103,7 +121,8 @@ final class ArticlesDatabaseManager {
             }
             
             try managedContext.save()
-            print("saved to coreData")
+            action?()
+            print("CoreData saved")
             
         } catch let error as NSError {
             print("Could not save. \(error), \(error.userInfo)")

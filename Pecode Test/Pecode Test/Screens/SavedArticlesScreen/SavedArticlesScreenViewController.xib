@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_0" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SavedArticlesScreenViewController" customModule="Pecode_Test" customModuleProvider="target">
+            <connections>
+                <outlet property="articlesTableView" destination="qZa-1v-VZ5" id="k0e-Lf-qOo"/>
+                <outlet property="searchTextField" destination="6fz-38-aga" id="kxr-ES-kan"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cFC-Wc-gyu" userLabel="SearchView">
+                    <rect key="frame" x="0.0" y="47" width="390" height="50"/>
+                    <subviews>
+                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6fz-38-aga" userLabel="SearchTextField">
+                            <rect key="frame" x="0.0" y="0.0" width="340" height="50"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kmr-f7-4QJ" userLabel="SearchButton">
+                            <rect key="frame" x="340" y="0.0" width="50" height="50"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="50" id="BQh-0f-L3p"/>
+                            </constraints>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="plain" image="magnifyingglass" catalog="system"/>
+                            <connections>
+                                <action selector="searchButtonAction:" destination="-1" eventType="touchUpInside" id="aDy-18-AW8"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstItem="Kmr-f7-4QJ" firstAttribute="leading" secondItem="6fz-38-aga" secondAttribute="trailing" id="0V3-21-UUh"/>
+                        <constraint firstAttribute="bottom" secondItem="Kmr-f7-4QJ" secondAttribute="bottom" id="7wr-ok-58y"/>
+                        <constraint firstAttribute="bottom" secondItem="6fz-38-aga" secondAttribute="bottom" id="CTO-wz-pL9"/>
+                        <constraint firstAttribute="trailing" secondItem="Kmr-f7-4QJ" secondAttribute="trailing" id="DxH-iK-MAv"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="Q3R-nV-oct"/>
+                        <constraint firstItem="Kmr-f7-4QJ" firstAttribute="top" secondItem="cFC-Wc-gyu" secondAttribute="top" id="o8L-PE-a0d"/>
+                        <constraint firstItem="6fz-38-aga" firstAttribute="top" secondItem="cFC-Wc-gyu" secondAttribute="top" id="ry2-bd-YQp"/>
+                        <constraint firstAttribute="height" constant="50" id="sht-yi-9Zb"/>
+                        <constraint firstItem="6fz-38-aga" firstAttribute="leading" secondItem="cFC-Wc-gyu" secondAttribute="leading" id="yJ5-Og-P2f"/>
+                    </constraints>
+                </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="qZa-1v-VZ5">
+                    <rect key="frame" x="0.0" y="122" width="390" height="722"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </tableView>
+                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PEN-a8-dHu">
+                    <rect key="frame" x="0.0" y="102" width="390" height="20"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kgw-Ll-vKH" userLabel="DeleteButton">
+                            <rect key="frame" x="0.0" y="0.0" width="390" height="20"/>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="plain" title="Delete All"/>
+                            <connections>
+                                <action selector="deleteButtonAction:" destination="-1" eventType="touchUpInside" id="XYb-FL-a6p"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="nN0-wO-avn"/>
+                    </constraints>
+                </stackView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="PEN-a8-dHu" firstAttribute="top" secondItem="cFC-Wc-gyu" secondAttribute="bottom" constant="5" id="6nj-nX-dWo"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="PEN-a8-dHu" secondAttribute="trailing" id="C0S-xy-1nI"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="cFC-Wc-gyu" secondAttribute="trailing" id="CGM-mq-ApR"/>
+                <constraint firstItem="qZa-1v-VZ5" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="L1O-fQ-Dqo"/>
+                <constraint firstAttribute="bottom" secondItem="qZa-1v-VZ5" secondAttribute="bottom" id="Up1-Jr-ded"/>
+                <constraint firstItem="cFC-Wc-gyu" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="cdk-uJ-BCX"/>
+                <constraint firstItem="PEN-a8-dHu" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="dF3-yi-Ro1"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="qZa-1v-VZ5" secondAttribute="trailing" id="rKp-QN-NCl"/>
+                <constraint firstItem="cFC-Wc-gyu" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="udX-mb-MUQ"/>
+                <constraint firstItem="qZa-1v-VZ5" firstAttribute="top" secondItem="PEN-a8-dHu" secondAttribute="bottom" id="zQE-1Y-zb7"/>
+            </constraints>
+            <point key="canvasLocation" x="126.15384615384615" y="19.90521327014218"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="magnifyingglass" catalog="system" width="128" height="117"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

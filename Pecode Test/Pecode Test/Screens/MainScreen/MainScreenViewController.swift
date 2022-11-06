@@ -7,7 +7,8 @@
 
 import UIKit
 
-//TODO: Add search
+//TODO: Clear code
+//TODO: add load spinner
 //TODO: Add filter by category, country, sources
 
 final  class MainScreenViewController: UIViewController {
@@ -16,30 +17,44 @@ final  class MainScreenViewController: UIViewController {
     
     @IBOutlet private var searchTextField: UITextField!
     
-    @IBAction func searchButtonAction(_ sender: Any) {
+    @IBAction private func searchButtonAction(_ sender: Any) {
         guard let text = searchTextField.text else { return }
         vm.onSearchButtonTapped(searchText: text)
     }
     
     private let vm = MainScreenViewModel()
+    private var pushSavedArticlesScreen: (() -> Void)?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        ArticlesDatabaseManager().deleteAllFromCoreData()
         setupUI()
         setupCallbacks()
         vm.onRefresh()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        vm.syncCoreDataWithCurrentArticles()
+    }
+    func start(pushSavedArticlesScreen: (() -> Void)?) {
+        self.pushSavedArticlesScreen = pushSavedArticlesScreen
+    }
+    
     private func setupUI() {
         setupTableView()
         setupSearchTextField()
-        
+        setupNavigationBar()
+    }
+    
+    private func setupNavigationBar() {
         self.navigationController?.view.backgroundColor = UIColor.white
         self.navigationController?.view.tintColor = UIColor.orange
         self.navigationItem.title = "News"
         
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Saved",
+                                                                                       style: .plain,
+                                                                                       target: self,
+                                                                                       action: #selector(savedButtonTapped))
     }
     
     private func setupTableView() {
@@ -82,6 +97,10 @@ final  class MainScreenViewController: UIViewController {
     @objc private func refresh(sender: UIRefreshControl) {
         vm.onRefresh()
     }
+    
+    @objc private func savedButtonTapped(sender: UIRefreshControl) {
+        pushSavedArticlesScreen?()
+    }
 }
 
 extension MainScreenViewController: UITableViewDelegate, UITableViewDataSource {
@@ -98,13 +117,12 @@ extension MainScreenViewController: UITableViewDelegate, UITableViewDataSource {
             
             let articles = vm.articles
             
-            let imageForCell = vm.loadImageByIndex(index: indexPath.row)
             
             cell.setup(title: articles[indexPath.row].title,
                        description: articles[indexPath.row].description,
                        source: articles[indexPath.row].source,
                        author: articles[indexPath.row].author,
-                       icon: imageForCell,
+                       icon: articles[indexPath.row].image,
                        publishedAt: articles[indexPath.row].publishedAt,
                        isSaved: articles[indexPath.row].isSaved) { [weak self] cell in
                 

@@ -29,6 +29,10 @@
 		407E402E2917D1D6007CB219 /* databaseSource.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 407E402C2917D1D6007CB219 /* databaseSource.xcdatamodeld */; };
 		407E40702917E801007CB219 /* ArticlesDatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407E406F2917E801007CB219 /* ArticlesDatabaseManager.swift */; };
 		407E40722917ED08007CB219 /* MainScreenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407E40712917ED08007CB219 /* MainScreenModel.swift */; };
+		407E4075291801C0007CB219 /* SavedArticlesScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407E4073291801C0007CB219 /* SavedArticlesScreenViewController.swift */; };
+		407E4076291801C0007CB219 /* SavedArticlesScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 407E4074291801C0007CB219 /* SavedArticlesScreenViewController.xib */; };
+		407E40782918039D007CB219 /* SavedArticlesScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407E40772918039C007CB219 /* SavedArticlesScreenViewModel.swift */; };
+		407E407A29180F6F007CB219 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407E407929180F6F007CB219 /* MainCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +79,10 @@
 		407E402D2917D1D6007CB219 /* databaseSource.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = databaseSource.xcdatamodel; sourceTree = "<group>"; };
 		407E406F2917E801007CB219 /* ArticlesDatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesDatabaseManager.swift; sourceTree = "<group>"; };
 		407E40712917ED08007CB219 /* MainScreenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenModel.swift; sourceTree = "<group>"; };
+		407E4073291801C0007CB219 /* SavedArticlesScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedArticlesScreenViewController.swift; sourceTree = "<group>"; };
+		407E4074291801C0007CB219 /* SavedArticlesScreenViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SavedArticlesScreenViewController.xib; sourceTree = "<group>"; };
+		407E40772918039C007CB219 /* SavedArticlesScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedArticlesScreenViewModel.swift; sourceTree = "<group>"; };
+		407E407929180F6F007CB219 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +135,7 @@
 			children = (
 				4057D4632914300400593851 /* AppDelegate.swift */,
 				4057D4652914300400593851 /* SceneDelegate.swift */,
+				407E407929180F6F007CB219 /* MainCoordinator.swift */,
 				4057D4932914309000593851 /* Screens */,
 				4057D494291430A400593851 /* Network */,
 				407E406E2917E7BC007CB219 /* Database */,
@@ -188,6 +197,9 @@
 		4057D49E2915552200593851 /* SavedArticlesScreen */ = {
 			isa = PBXGroup;
 			children = (
+				407E4073291801C0007CB219 /* SavedArticlesScreenViewController.swift */,
+				407E4074291801C0007CB219 /* SavedArticlesScreenViewController.xib */,
+				407E40772918039C007CB219 /* SavedArticlesScreenViewModel.swift */,
 			);
 			path = SavedArticlesScreen;
 			sourceTree = "<group>";
@@ -345,6 +357,7 @@
 				4057D4A92915832900593851 /* ArticleTableViewCell.xib in Resources */,
 				4057D4B22916A1E000593851 /* DetailsScreenViewController.xib in Resources */,
 				4057D4702914300700593851 /* LaunchScreen.storyboard in Resources */,
+				407E4076291801C0007CB219 /* SavedArticlesScreenViewController.xib in Resources */,
 				4057D499291430D900593851 /* MainScreenViewController.xib in Resources */,
 				4057D4AE291696D100593851 /* LoadTableViewCell.xib in Resources */,
 				4057D46D2914300700593851 /* Assets.xcassets in Resources */,
@@ -373,6 +386,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4057D4A2291555CE00593851 /* UserConstants.swift in Sources */,
+				407E4075291801C0007CB219 /* SavedArticlesScreenViewController.swift in Sources */,
 				4057D498291430D900593851 /* MainScreenViewController.swift in Sources */,
 				4057D49B2914322500593851 /* NetworkManager.swift in Sources */,
 				4057D4642914300400593851 /* AppDelegate.swift in Sources */,
@@ -380,11 +394,13 @@
 				407E402E2917D1D6007CB219 /* databaseSource.xcdatamodeld in Sources */,
 				4057D4662914300400593851 /* SceneDelegate.swift in Sources */,
 				4057D4AD291696D100593851 /* LoadTableViewCell.swift in Sources */,
+				407E407A29180F6F007CB219 /* MainCoordinator.swift in Sources */,
 				407E40702917E801007CB219 /* ArticlesDatabaseManager.swift in Sources */,
 				4057D4B12916A1E000593851 /* DetailsScreenViewController.swift in Sources */,
 				407E40722917ED08007CB219 /* MainScreenModel.swift in Sources */,
 				4057D4A4291557F900593851 /* ArticlesAPIEndpoint.swift in Sources */,
 				4057D49D291439E900593851 /* MainScreenViewModel.swift in Sources */,
+				407E40782918039D007CB219 /* SavedArticlesScreenViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -5,7 +5,7 @@
 //  Created by Kito on 11/6/22.
 //
 
-import Foundation
+import UIKit
 
 struct ArticlesModel {
     let source: String
@@ -13,7 +13,7 @@ struct ArticlesModel {
     let title: String
     let description: String
     let url: String
-    let urlToImage: String
+    let image: UIImage?
     let publishedAt: String
     var isSaved = false
 }
