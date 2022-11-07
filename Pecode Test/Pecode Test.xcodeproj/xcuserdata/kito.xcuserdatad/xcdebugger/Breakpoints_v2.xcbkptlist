@@ -14,8 +14,8 @@
             filePath = "Pecode Test/Screens/MainScreen/MainScreenViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "160"
-            endingLineNumber = "160"
+            startingLineNumber = "208"
+            endingLineNumber = "208"
             landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -39,64 +39,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "CC9475BD-15D0-4775-99F1-201EA1390CB7"
+            uuid = "A35CDE40-F405-4F08-AC1F-C406735B4F2E"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Pecode Test/Screens/MainScreen/MainScreenViewModel.swift"
+            filePath = "Pecode Test/Network/ArticlesAPIEndpoint.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "44"
-            endingLineNumber = "44"
-            landmarkName = "loadArticles(state:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "CC9475BD-15D0-4775-99F1-201EA1390CB7 - 868b0248cb22760f"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Pecode_Test.MainScreenViewModel.loadArticles(state: Pecode_Test.LoadingState) -&gt; ()"
-                  moduleName = "Pecode Test"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Volumes/Macintosh%20SSD%20-%20Data/projects/pecodeTestTask/Pecode%20Test/Pecode%20Test/Screens/MainScreen/MainScreenViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "44"
-                  endingLineNumber = "44"
-                  offsetFromSymbolStart = "704">
-               </Location>
-               <Location
-                  uuid = "CC9475BD-15D0-4775-99F1-201EA1390CB7 - de9db2002580575f"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Pecode_Test.ResponceResult&lt;Pecode_Test.NewsResponseModel&gt;) -&gt; () in Pecode_Test.MainScreenViewModel.loadArticles(state: Pecode_Test.LoadingState) -&gt; ()"
-                  moduleName = "Pecode Test"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Volumes/Macintosh%20SSD%20-%20Data/projects/pecodeTestTask/Pecode%20Test/Pecode%20Test/Screens/MainScreen/MainScreenViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "47"
-                  endingLineNumber = "47"
-                  offsetFromSymbolStart = "180">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "0E52333A-242F-4DDF-965A-FE905C46E8B6"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Pecode Test/Screens/MainScreen/MainScreenViewModel.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "58"
-            endingLineNumber = "58"
-            landmarkName = "loadArticles(state:)"
+            startingLineNumber = "100"
+            endingLineNumber = "100"
+            landmarkName = "init(page:searchFor:country:category:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

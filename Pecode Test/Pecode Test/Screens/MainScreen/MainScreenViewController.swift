@@ -16,6 +16,9 @@ final class MainScreenViewController: UIViewController {
     @IBOutlet private var searchTextField: UITextField!
     @IBOutlet private var searchButton: UIButton!
     
+    @IBOutlet private var countryFilterButton: UIButton!
+    @IBOutlet private var categoryButton: UIButton!
+    
     @IBAction private func searchButtonAction(_ sender: Any) {
         guard let text = searchTextField.text else { return }
         
@@ -41,6 +44,7 @@ final class MainScreenViewController: UIViewController {
         
         setupUI()
         setupCallbacks()
+        vm.loadArticles(state: .refresh)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -56,6 +60,8 @@ final class MainScreenViewController: UIViewController {
         setupSearchTextField()
         setupNavigationBar()
         setupActivityIndicator()
+        setupCountryFilterButton()
+        setupCategoryFilterButton()
     }
     
     private func setupNavigationBar() {
@@ -67,6 +73,48 @@ final class MainScreenViewController: UIViewController {
                                                                  style: .plain,
                                                                  target: self,
                                                                  action: #selector(savedButtonTapped))
+    }
+    
+    private func setupCountryFilterButton() {
+        let optionClouser = {(action: UIAction) in
+            self.activityView?.startAnimating()
+            self.vm.onCountryFilterButtonTapped(title: action.title)
+        }
+        
+        var menuAction = [UIAction]()
+        let emptyAction = UIAction(handler: optionClouser)
+        menuAction.append(emptyAction)
+        
+        for country in CountryList.allCases {
+            let action =  UIAction(title: country.rawValue, handler: optionClouser)
+            menuAction.append(action)
+        }
+        
+        menuAction[0].state = .on
+        countryFilterButton.menu = UIMenu(children: menuAction)
+        countryFilterButton.showsMenuAsPrimaryAction = true
+        
+    }
+    
+    private func setupCategoryFilterButton() {
+        let optionClouser = {(action: UIAction) in
+            self.activityView?.startAnimating()
+            self.vm.onCategoryFilterButtonTapped(title: action.title)
+        }
+        
+        var menuAction = [UIAction]()
+        let emptyAction = UIAction(handler: optionClouser)
+        menuAction.append(emptyAction)
+        
+        for country in CategoryList.allCases {
+            let action =  UIAction(title: country.rawValue, handler: optionClouser)
+            menuAction.append(action)
+        }
+        
+        menuAction[0].state = .on
+        categoryButton.menu = UIMenu(children: menuAction)
+        categoryButton.showsMenuAsPrimaryAction = true
+        
     }
     
     private func setupTableView() {

@@ -6,12 +6,15 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="UIMenu" message="Requires Xcode 11 or later." minToolsVersion="11.0" requiredIntegratedClassName="UICommandDiff"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainScreenViewController" customModule="Pecode_Test" customModuleProvider="target">
             <connections>
                 <outlet property="articlesTableView" destination="MLJ-sx-7au" id="8nh-8b-qMp"/>
+                <outlet property="categoryButton" destination="40j-Xb-kMM" id="p9p-jc-IVu"/>
+                <outlet property="countryFilterButton" destination="bZX-Jz-5Jg" id="guE-1e-QQ9"/>
                 <outlet property="searchButton" destination="jgL-pa-3qd" id="qau-YZ-dxA"/>
                 <outlet property="searchTextField" destination="v2t-02-4PC" id="iY6-ob-vac"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -23,7 +26,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" contentInsetAdjustmentBehavior="scrollableAxes" bouncesZoom="NO" keyboardDismissMode="onDrag" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="MLJ-sx-7au" userLabel="ArticlesTableView">
-                    <rect key="frame" x="0.0" y="97" width="390" height="747"/>
+                    <rect key="frame" x="0.0" y="122" width="390" height="722"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <viewLayoutGuide key="contentLayoutGuide" id="IkB-8X-dR6"/>
                     <viewLayoutGuide key="frameLayoutGuide" id="3Lf-xq-jU2"/>
@@ -63,6 +66,70 @@
                         <constraint firstItem="v2t-02-4PC" firstAttribute="centerY" secondItem="x7I-7M-r50" secondAttribute="centerY" id="wSf-mE-IAv"/>
                     </constraints>
                 </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kow-Wu-gMw">
+                    <rect key="frame" x="0.0" y="102" width="390" height="20"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" changesSelectionAsPrimaryAction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bZX-Jz-5Jg" userLabel="countryButton">
+                            <rect key="frame" x="135" y="-5" width="20" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="20" id="1Hf-fS-01c"/>
+                            </constraints>
+                            <menu key="menu" id="lrx-1K-N5E">
+                                <children>
+                                    <command title="Item 1" id="bQC-OK-fie"/>
+                                    <command title="Item 2" id="Aib-ty-8l8"/>
+                                </children>
+                            </menu>
+                            <state key="normal" title="Button"/>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" changesSelectionAsPrimaryAction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="40j-Xb-kMM" userLabel="categoryButton">
+                            <rect key="frame" x="270" y="0.0" width="100" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="100" id="8IU-LD-Ntg"/>
+                                <constraint firstAttribute="height" constant="20" id="H4a-tA-6O2"/>
+                            </constraints>
+                            <menu key="menu" id="i3V-m3-4Pb">
+                                <children>
+                                    <command title="Item 1" id="3no-rK-qJs"/>
+                                    <command title="Item 2" id="698-RP-3H1"/>
+                                </children>
+                            </menu>
+                            <state key="normal" title="Button"/>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Filter by country:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YcH-ry-6ch" userLabel="Filter by">
+                            <rect key="frame" x="25" y="0.0" width="100" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="eOw-Sk-8eo"/>
+                                <constraint firstAttribute="width" constant="100" id="uri-mR-BH8"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Filter by category:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FiT-n1-zS0" userLabel="category">
+                            <rect key="frame" x="165" y="0.0" width="100" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="BVm-yg-Bu0"/>
+                                <constraint firstAttribute="width" constant="100" id="jgT-ih-SNR"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstItem="40j-Xb-kMM" firstAttribute="centerY" secondItem="Kow-Wu-gMw" secondAttribute="centerY" id="BJ6-Ur-PoD"/>
+                        <constraint firstItem="YcH-ry-6ch" firstAttribute="centerY" secondItem="Kow-Wu-gMw" secondAttribute="centerY" id="Dec-Kn-fE0"/>
+                        <constraint firstItem="FiT-n1-zS0" firstAttribute="centerY" secondItem="Kow-Wu-gMw" secondAttribute="centerY" id="JN0-LF-DQw"/>
+                        <constraint firstItem="bZX-Jz-5Jg" firstAttribute="leading" secondItem="YcH-ry-6ch" secondAttribute="trailing" constant="10" id="Xw3-he-Ila"/>
+                        <constraint firstAttribute="height" constant="20" id="ahJ-EO-LfF"/>
+                        <constraint firstItem="40j-Xb-kMM" firstAttribute="leading" secondItem="FiT-n1-zS0" secondAttribute="trailing" constant="5" id="fed-D7-yfk"/>
+                        <constraint firstItem="FiT-n1-zS0" firstAttribute="leading" secondItem="bZX-Jz-5Jg" secondAttribute="trailing" constant="10" id="kpn-Hy-Egr"/>
+                        <constraint firstAttribute="trailing" secondItem="40j-Xb-kMM" secondAttribute="trailing" constant="20" id="leo-bO-Sl4"/>
+                        <constraint firstItem="bZX-Jz-5Jg" firstAttribute="centerY" secondItem="Kow-Wu-gMw" secondAttribute="centerY" id="s7N-eC-bg6"/>
+                    </constraints>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -73,7 +140,10 @@
                 <constraint firstAttribute="bottom" secondItem="MLJ-sx-7au" secondAttribute="bottom" id="PPR-xQ-Epg"/>
                 <constraint firstItem="x7I-7M-r50" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="YpB-kW-McP"/>
                 <constraint firstItem="x7I-7M-r50" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="ZA6-C6-lu3"/>
-                <constraint firstItem="MLJ-sx-7au" firstAttribute="top" secondItem="x7I-7M-r50" secondAttribute="bottom" id="bAG-6y-7mm"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Kow-Wu-gMw" secondAttribute="trailing" id="dJk-LW-chZ"/>
+                <constraint firstItem="MLJ-sx-7au" firstAttribute="top" secondItem="Kow-Wu-gMw" secondAttribute="bottom" id="dZC-aD-ZRe"/>
+                <constraint firstItem="Kow-Wu-gMw" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="jXB-Qt-RuG"/>
+                <constraint firstItem="Kow-Wu-gMw" firstAttribute="top" secondItem="x7I-7M-r50" secondAttribute="bottom" constant="5" id="jfV-gI-kJX"/>
             </constraints>
             <point key="canvasLocation" x="127.69230769230769" y="20.616113744075829"/>
         </view>

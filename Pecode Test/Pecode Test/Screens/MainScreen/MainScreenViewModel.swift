@@ -21,6 +21,8 @@ final class MainScreenViewModel {
     private var totalArticles = 0
     private var currentPage = 1
     private var searchFor = ""
+    private var country: String?
+    private var category: String?
     
     private let imageCash = NSCache<NSString, UIImage>()
     
@@ -37,7 +39,9 @@ final class MainScreenViewModel {
         }
         
         let url = ArticlesAPIEndpoint(page: String(currentPage),
-                                      searchFor: searchFor).url
+                                      searchFor: searchFor,
+                                      country: country,
+                                      category: category).url
         
         let nm = NetworkManager()
         
@@ -57,6 +61,7 @@ final class MainScreenViewModel {
                     self.articles = []
                     self.imageCash.removeAllObjects()
                 case .loadNextPage: break
+                    
                 }
                 
                 for news in articles {
@@ -84,6 +89,15 @@ final class MainScreenViewModel {
         
     }
     
+    func onCountryFilterButtonTapped(title: String) {
+        if title == "" { country = nil } else { country = title }
+        loadArticles(state: .refresh)
+    }
+    func onCategoryFilterButtonTapped(title: String) {
+        if title == "" { category = nil } else { category = title }
+        loadArticles(state: .refresh)
+    }
+    
     func onFavouriteButtonTapped(At index: Int) {
         let dbManager = ArticlesDatabaseManager()
         
@@ -104,7 +118,7 @@ final class MainScreenViewModel {
         searchFor = searchText
         loadArticles(state: .refresh)
     }
-      
+    
     func syncCoreDataWithCurrentArticles() {
         
         DispatchQueue.main.async {
@@ -125,7 +139,7 @@ final class MainScreenViewModel {
                     }
                 }
                 
-               
+                
             }
         }
         
